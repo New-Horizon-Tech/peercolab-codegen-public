@@ -11,6 +11,7 @@ Download the latest version of the PeerColab Codegen tool for your operating sys
 - [macOS (x64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/PeerColabCodegen-osx-x64)
 - [macOS (arm64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/PeerColabCodegen-osx-arm64)
 - [Linux (x64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/PeerColabCodegen-linux-x64)
+- [Linux (arm64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/PeerColabCodegen-linux-arm64)
 
 Each binary is provided as a standalone executable. Download the appropriate file for your platform and follow the instructions to get started.
 
