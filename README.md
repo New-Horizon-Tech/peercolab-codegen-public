@@ -86,9 +86,9 @@ The codegen tool creates a folder named after your **system** inside the local p
 
 | Language | Output | Runtime Dependency |
 |----------|--------|--------------------|
-| **TypeScript** | `.ts` files with imports, typed models, and operation stubs | `peercolab-engine` npm package |
-| **C# (.NET)** | `.cs` files with namespaces and typed models | `PeerColabEngine` NuGet package |
-| **Python** | `.py` files with typed classes and imports | `peercolab-engine` pip package |
+| **TypeScript** | `.ts` files with imports, typed models, and operation stubs | [`@peercolab/engine`](https://www.npmjs.com/package/@peercolab/engine) (npm) |
+| **C# (.NET)** | `.cs` files with namespaces and typed models | [`PeerColabEngine`](https://www.nuget.org/packages/PeerColabEngine) (NuGet) |
+| **Python** | `.py` files with typed classes and imports | [`peercolab-engine`](https://pypi.org/project/peercolab-engine/) (pip) |
 
 The generated code provides the types and contracts for your PeerColab models. The runtime engine package handles transport and serialization.
 
