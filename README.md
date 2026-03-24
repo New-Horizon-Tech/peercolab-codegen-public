@@ -1,11 +1,22 @@
-
 # PeerColab Codegen Tool
 
-PeerColab helps you build cleaner, future-ready software architectures with native AI Agent support. With PeerColab, you can easily model your product architecture, integrate AI agents, and export the resulting code directly into your source code repository. This approach makes it simple to design, implement, and maintain modern systems that are both robust and easy to evolve.
+The PeerColab Codegen tool is a companion to [PeerColab Builder](https://app.peercolab.com) that generates typed client code from your PeerColab models. It runs locally on your machine and writes generated code directly into your source code repository.
 
-## Download the PeerColab Codegen Tool
+## How It Works
 
-Download the latest version of the PeerColab Codegen tool for your operating system:
+PeerColab separates the design of your system from the implementation:
+
+1. **PeerColab Builder** (`app.peercolab.com`) is where you model your product architecture — defining operations, types, and events.
+2. **Codegen Tool** runs locally on your machine. When you export a library from Builder, the codegen tool generates code files and writes them to your configured local path.
+3. **Language Engines** — the codegen tool supports **TypeScript**, **C# (.NET)**, and **Python**. Each language engine produces typed models, operation stubs, and event contracts that match your PeerColab model. The generated code depends on the **PeerColab Engine** runtime package for the chosen language.
+
+```
+Design in Builder  →  Export  →  Codegen writes typed code to your project
+```
+
+## Download
+
+Download the latest version for your operating system:
 
 - [Windows (x64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/PeerColabCodegen-win-x64.exe)
 - [macOS (x64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/PeerColabCodegen-osx-x64)
@@ -13,9 +24,74 @@ Download the latest version of the PeerColab Codegen tool for your operating sys
 - [Linux (x64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/PeerColabCodegen-linux-x64)
 - [Linux (arm64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/PeerColabCodegen-linux-arm64)
 
-Each binary is provided as a standalone executable. Download the appropriate file for your platform and follow the instructions to get started.
+## Installation & Running
+
+### macOS / Linux
+
+```bash
+# Make the binary executable
+chmod +x PeerColabCodegen-linux-x64
+
+# Run it
+./PeerColabCodegen-linux-x64
+```
+
+On macOS, you may need to remove the quarantine attribute before running:
+
+```bash
+xattr -d com.apple.quarantine PeerColabCodegen-osx-arm64
+```
+
+### Windows
+
+Download the `.exe` file and run it directly from the terminal or by double-clicking.
+
+### Notes
+
+- Only one instance can run at a time. If the tool is already running, a second launch will exit automatically.
+- The tool checks for updates on startup. Use `--auto-update` to update without being prompted.
+
+## CLI Reference
+
+```
+Usage: PeerColabCodegen [options]
+
+Options:
+  -h, --help              Show help and exit.
+  --version               Print version and exit.
+  --auto-update           Update without prompting.
+  --update-quiet          Suppress update messages.
+  --force-update          Use longer timeouts for update checks.
+  --verbose               Enable verbose logging.
+```
+
+## Using with PeerColab Builder
+
+1. Start the codegen tool on your machine.
+2. Open [PeerColab Builder](https://app.peercolab.com) and navigate to your library.
+3. Configure the export settings — choose the target language and the local path where code should be written.
+4. Export from Builder — the codegen tool generates the files and writes them into your project.
+
+### Output folder structure
+
+The codegen tool creates a folder named after your **system** inside the local path you chose in Builder. For example, if your system is called `Payments` and you export to `/home/user/myproject/src`, the generated code will be written to:
+
+```
+/home/user/myproject/src/Payments/
+```
+
+**Important:** This folder is fully overwritten on every export. Do not choose a local path that already contains a folder with the same name as your system, unless that folder is exclusively managed by the codegen tool.
+
+## Supported Languages
+
+| Language | Output | Runtime Dependency |
+|----------|--------|--------------------|
+| **TypeScript** | `.ts` files with imports, typed models, and operation stubs | `peercolab-engine` npm package |
+| **C# (.NET)** | `.cs` files with namespaces and typed models | `PeerColabEngine` NuGet package |
+| **Python** | `.py` files with typed classes and imports | `peercolab-engine` pip package |
+
+The generated code provides the types and contracts for your PeerColab models. The runtime engine package handles transport and serialization.
 
 ---
 
 For more information, visit [peercolab.com](https://www.peercolab.com/) or [contact us](https://www.peercolab.com/contact).
-
