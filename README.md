@@ -69,20 +69,6 @@ Windows: rename `peercolab-win-x64.exe` to `peercolab.exe` and move it to a dire
 - Only one instance can run at a time. If the tool is already running, a second launch will exit automatically.
 - The tool checks for updates on startup. Use `--auto-update` to update without being prompted.
 
-## CLI Reference
-
-```
-Usage: peercolab [options]
-
-Options:
-  -h, --help              Show help and exit.
-  --version               Print version and exit.
-  --auto-update           Update without prompting.
-  --update-quiet          Suppress update messages.
-  --force-update          Use longer timeouts for update checks.
-  --verbose               Enable verbose logging.
-```
-
 ## Using with app.peercolab.com
 
 1. Start the CLI on your machine by running `peercolab`.
