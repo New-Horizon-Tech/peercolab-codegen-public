@@ -1,17 +1,17 @@
-# PeerColab Codegen Tool
+# PeerColab CLI
 
-The PeerColab Codegen tool is a companion to [PeerColab Builder](https://app.peercolab.com) that generates typed client code from your PeerColab models. It runs locally on your machine and writes generated code directly into your source code repository.
+The PeerColab CLI is a companion to [app.peercolab.com](https://app.peercolab.com) that generates typed client code from your PeerColab models. It runs locally on your machine and writes generated code directly into your source code repository.
 
 ## How It Works
 
 PeerColab separates the design of your system from the implementation:
 
-1. **PeerColab Builder** (`app.peercolab.com`) is where you model your product architecture — defining operations, types, and events.
-2. **Codegen Tool** runs locally on your machine. When you export a library from Builder, the codegen tool generates code files and writes them to your configured local path.
-3. **Language Engines** — the codegen tool supports **TypeScript**, **C# (.NET)**, and **Python**. Each language engine produces typed models, operation stubs, and event contracts that match your PeerColab model. The generated code depends on the **PeerColab Engine** runtime package for the chosen language.
+1. [**app.peercolab.com**](https://app.peercolab.com) is where you model your product architecture, defining operations, types, and events.
+2. **PeerColab CLI** runs locally on your machine. When you export a library from app.peercolab.com, the CLI generates code files and writes them to your configured local path.
+3. **Language Engines**. The CLI supports **TypeScript**, **C# (.NET)**, and **Python**. Each language engine produces typed models, operation stubs, and event contracts that match your PeerColab model. The generated code depends on the **PeerColab Engine** runtime package for the chosen language.
 
 ```
-Design in Builder  →  Export  →  Codegen writes typed code to your project
+Design at app.peercolab.com  →  Export  →  PeerColab CLI writes typed code to your project
 ```
 
 ## Install
@@ -58,7 +58,7 @@ mv peercolab-linux-x64 peercolab
 chmod +x peercolab
 mv peercolab ~/.local/bin/
 
-# macOS only — clear Gatekeeper quarantine if needed
+# macOS only: clear Gatekeeper quarantine if needed
 xattr -d com.apple.quarantine ~/.local/bin/peercolab 2>/dev/null || true
 ```
 
@@ -83,22 +83,22 @@ Options:
   --verbose               Enable verbose logging.
 ```
 
-## Using with PeerColab Builder
+## Using with app.peercolab.com
 
-1. Start the codegen tool on your machine by running `peercolab`.
-2. Open [PeerColab Builder](https://app.peercolab.com) and navigate to your library.
-3. Configure the export settings — choose the target language and the local path where code should be written.
-4. Export from Builder — the codegen tool generates the files and writes them into your project.
+1. Start the CLI on your machine by running `peercolab`.
+2. Open [app.peercolab.com](https://app.peercolab.com) and navigate to your library.
+3. Configure the export settings. Choose the target language and the local path where code should be written.
+4. Export from app.peercolab.com. The CLI generates the files and writes them into your project.
 
 ### Output folder structure
 
-The codegen tool creates a folder named after your **system** inside the local path you chose in Builder. For example, if your system is called `Payments` and you export to `/home/user/myproject/src`, the generated code will be written to:
+The CLI creates a folder named after your **system** inside the local path you chose in app.peercolab.com. For example, if your system is called `Payments` and you export to `/home/user/myproject/src`, the generated code will be written to:
 
 ```
 /home/user/myproject/src/Payments/
 ```
 
-**Important:** This folder is fully overwritten on every export. Do not choose a local path that already contains a folder with the same name as your system, unless that folder is exclusively managed by the codegen tool.
+**Important:** This folder is fully overwritten on every export. Do not choose a local path that already contains a folder with the same name as your system, unless that folder is exclusively managed by the CLI.
 
 ## Supported Languages
 
