@@ -14,37 +14,55 @@ PeerColab separates the design of your system from the implementation:
 Design in Builder  →  Export  →  Codegen writes typed code to your project
 ```
 
-## Download
+## Install
 
-Download the latest version for your operating system:
-
-- [Windows (x64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/PeerColabCodegen-win-x64.exe)
-- [macOS (x64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/PeerColabCodegen-osx-x64)
-- [macOS (arm64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/PeerColabCodegen-osx-arm64)
-- [Linux (x64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/PeerColabCodegen-linux-x64)
-- [Linux (arm64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/PeerColabCodegen-linux-arm64)
-
-## Installation & Running
+The installer downloads the right binary for your platform, names it `peercolab`, and places it on your `PATH`.
 
 ### macOS / Linux
 
 ```bash
-# Make the binary executable
-chmod +x PeerColabCodegen-linux-x64
-
-# Run it
-./PeerColabCodegen-linux-x64
+curl -fsSL https://raw.githubusercontent.com/New-Horizon-Tech/peercolab-codegen-public/main/install.sh | bash
 ```
 
-On macOS, you may need to remove the quarantine attribute before running:
+Installs to `~/.local/bin/peercolab` by default. Override with `PEERCOLAB_INSTALL_DIR=/some/dir`.
+
+### Windows (PowerShell)
+
+```powershell
+iwr -useb https://raw.githubusercontent.com/New-Horizon-Tech/peercolab-codegen-public/main/install.ps1 | iex
+```
+
+Installs to `%LOCALAPPDATA%\Programs\peercolab\peercolab.exe` and adds that directory to your user `PATH`. Open a new terminal to pick up the change.
+
+After installation, run it from any directory:
+
+```
+peercolab
+```
+
+### Manual install
+
+If you'd rather not run a piped script, download the binary directly and place it on your `PATH`:
+
+- [Windows (x64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/peercolab-win-x64.exe)
+- [macOS (x64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/peercolab-osx-x64)
+- [macOS (arm64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/peercolab-osx-arm64)
+- [Linux (x64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/peercolab-linux-x64)
+- [Linux (arm64)](https://github.com/New-Horizon-Tech/peercolab-codegen-public/releases/latest/download/peercolab-linux-arm64)
+
+Linux/macOS:
 
 ```bash
-xattr -d com.apple.quarantine PeerColabCodegen-osx-arm64
+# Rename, make executable, move onto PATH
+mv peercolab-linux-x64 peercolab
+chmod +x peercolab
+mv peercolab ~/.local/bin/
+
+# macOS only — clear Gatekeeper quarantine if needed
+xattr -d com.apple.quarantine ~/.local/bin/peercolab 2>/dev/null || true
 ```
 
-### Windows
-
-Download the `.exe` file and run it directly from the terminal or by double-clicking.
+Windows: rename `peercolab-win-x64.exe` to `peercolab.exe` and move it to a directory on your `PATH`.
 
 ### Notes
 
@@ -54,7 +72,7 @@ Download the `.exe` file and run it directly from the terminal or by double-clic
 ## CLI Reference
 
 ```
-Usage: PeerColabCodegen [options]
+Usage: peercolab [options]
 
 Options:
   -h, --help              Show help and exit.
@@ -67,7 +85,7 @@ Options:
 
 ## Using with PeerColab Builder
 
-1. Start the codegen tool on your machine.
+1. Start the codegen tool on your machine by running `peercolab`.
 2. Open [PeerColab Builder](https://app.peercolab.com) and navigate to your library.
 3. Configure the export settings — choose the target language and the local path where code should be written.
 4. Export from Builder — the codegen tool generates the files and writes them into your project.
