@@ -12,8 +12,15 @@ $ErrorActionPreference = 'Stop'
 $repo = 'New-Horizon-Tech/peercolab-codegen-public'
 $version = if ($env:PEERCOLAB_VERSION) { $env:PEERCOLAB_VERSION } else { 'latest' }
 
-$arch = [System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture
-if ($arch -ne 'X64') {
+# Detect OS architecture. PROCESSOR_ARCHITECTURE reflects the *current process* arch,
+# so on 32-bit PowerShell hosted under WOW64 we consult PROCESSOR_ARCHITEW6432 instead.
+$arch = if ($env:PROCESSOR_ARCHITEW6432) { $env:PROCESSOR_ARCHITEW6432 } else { $env:PROCESSOR_ARCHITECTURE }
+if (-not $arch) {
+    try { $arch = [string][System.Runtime.InteropServices.RuntimeInformation]::OSArchitecture } catch {}
+}
+if (-not $arch) { $arch = '<unknown>' }
+
+if ($arch -ne 'AMD64' -and $arch -ne 'X64') {
     Write-Error "Unsupported architecture: $arch (only win-x64 is available)."
     exit 1
 }
